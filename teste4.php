@@ -27,31 +27,34 @@
 // [123, -17, -5, 1, 2, 3, 12, 43, 45] true
 // [3, 5, 67, 98, 3] true
 
-$array_original = 
-[1, 4, 10, 4, 2]
-                ;
+$array_original = [123, -17, -5, 1, 2, 3, 12, 43, 45];
 
-//Explicando um pouco o código:
-//Pego o array original passado, removo o primeiro a posicao 0 do mesmo, e armazeno ele em outra variavel ordenando o mesmo, 
-//caso o array sem o item seja igual ao ordenado, entao retornará true
-//depois faço isso com a posicao 1,posicao 2 etc ... do array e assim por diante     
-// OBS: nao comentei linha por linha pra ganhar tempo no teste          
-$rst = new stdClass;
-foreach ($array_original as $key => $valor) {
-    $aux_original = $array_original;
-    unset($aux_original[$key]);     
-    $aux_original_ordenado =  $aux_original  ;
-    sort($aux_original_ordenado);    
-    $aux_original_ordenado = array_unique($aux_original_ordenado);
-    $aux_original_ordenado = implode(',', $aux_original_ordenado );
-    $aux_original = implode(',', $aux_original );
-    if ($aux_original_ordenado == $aux_original) {
-        echo "true";
-        return;                  
+sequenciaCrescente($array_original);
+
+function sequenciaCrescente($array_original)
+{
+    //Explicando um pouco o código:
+    //Pego o array original passado, removo o primeiro a posicao 0 do mesmo, e armazeno ele em outra variavel ordenando o mesmo, 
+    //caso o array sem o item seja igual ao ordenado, entao retornará true
+    //depois faço isso com a posicao 1,posicao 2 etc ... do array e assim por diante     
+    // OBS: nao comentei linha por linha pra ganhar tempo no teste          
+    $rst = new stdClass;
+    foreach ($array_original as $key => $valor) {
+        $aux_original = $array_original;
+        unset($aux_original[$key]);     
+        $aux_original_ordenado =  $aux_original  ;
+        sort($aux_original_ordenado);    
+        $aux_original_ordenado = array_unique($aux_original_ordenado);
+        $aux_original_ordenado = implode(',', $aux_original_ordenado );
+        $aux_original = implode(',', $aux_original );
+        if ($aux_original_ordenado == $aux_original) {
+            echo "true";
+            return;                  
+        }
     }
-
+    echo "false";    
 }
 
-echo "false";
+
 
 ?>
